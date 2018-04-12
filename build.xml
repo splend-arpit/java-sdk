@@ -1,0 +1,61 @@
+<project name="outside" basedir=".">
+
+    <!-- Target release -->
+    <target name="release">
+
+        <property name="version" value="default-module" />
+        <property name="jar.name" value="${ant.project.name}-${version}.jar"/>
+        <echo message="Packaging ${ant.project.name} v${version}..."/>
+
+        <!-- Delete directories and files -->
+        <delete dir="target"/>
+        <delete dir="release"/>
+        <delete file="${basedir}/${ant.project.name}-${version}.tar.gz"/>
+
+        <!-- Execute Maven install -->
+        <exec executable="mvn">
+            <arg value="install"/>
+        </exec>
+
+        <!-- Create release Directory  -->
+        <mkdir dir="release"/>
+
+        <!-- Properties -->
+        <property name="release.dir" value="release"/>
+
+        <!-- Release Directory  -->
+        <delete dir="release"/>
+        <mkdir dir="release"/>
+
+        <!-- Apps Directory -->
+        <mkdir dir="release/apps/${ant.project.name}/"/>
+        <copyfile src="target/${ant.project.name}-x.x.x.jar" dest="release/apps/${ant.project.name}/${jar.name}"/>
+        <delete file="release/${jar.name}" />
+
+        <!-- Properties Directory -->
+        <mkdir dir="release/apps/${ant.project.name}/properties/"/>
+        <copy todir="release/apps/${ant.project.name}/properties/">
+            <fileset dir="${basedir}/properties/">
+                <include name="${ant.project.name}*.*"/>
+            </fileset>
+            <filterchain>
+                <replaceregex pattern="x.x.x" replace="${version}"/>
+            </filterchain>
+        </copy>
+
+        <!-- DB Directory  -->
+        <mkdir dir="release/apps/${ant.project.name}/db/"/>
+        <copy todir="release/apps/${ant.project.name}/db/">
+            <fileset dir="${basedir}/db/">
+                <include name="*.sql"/>
+            </fileset>
+        </copy>
+
+        <!-- Tar, gzip, copy, and delete -->
+        <tar destfile="release/${ant.project.name}-${version}.tar" basedir="release" />
+        <gzip destfile="release/${ant.project.name}-${version}.tar.gz" src="release/${ant.project.name}-${version}.tar"/>
+        <copyfile src="release/${ant.project.name}-${version}.tar.gz" dest="${basedir}/${ant.project.name}-${version}.tar.gz"/>
+        <delete dir="release"/>
+    </target>
+
+</project>
