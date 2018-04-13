@@ -196,7 +196,7 @@ public class Sdk {
             return receipt;
         }
     }
-    
+
     /**
      * @return @throws Exception
      */
