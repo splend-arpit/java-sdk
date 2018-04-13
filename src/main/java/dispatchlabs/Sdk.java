@@ -69,7 +69,7 @@ public class Sdk {
      */
     public Receipt transferTokens(Contact contact, String privateKey, String from, String to, long tokens) throws Exception {
         try (Http http = new Http()) {
-            Transaction transaction = Transaction.create(privateKey, from, to, Transaction.Type.TRANSFER_TOKENS, tokens);
+            Transaction transaction = Transaction.create(privateKey, from, to, Transaction.Type.TRANSFER_TOKENS, tokens, System.currentTimeMillis());
             JSONObject jsonObject = new JSONObject(http.post("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions", getHeaders(), transaction.toString()));
             receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
             return receipt;
@@ -86,7 +86,7 @@ public class Sdk {
      */
     public Receipt transferTokens(Contact contact, Account fromAccount, Account toAccount, long tokens) throws Exception {
         try (Http http = new Http()) {
-            Transaction transaction = Transaction.create(fromAccount.getPrivateKey(), fromAccount.getAddress(), toAccount.getAddress(), Transaction.Type.TRANSFER_TOKENS, tokens);
+            Transaction transaction = Transaction.create(fromAccount.getPrivateKey(), fromAccount.getAddress(), toAccount.getAddress(), Transaction.Type.TRANSFER_TOKENS, tokens, System.currentTimeMillis());
             JSONObject jsonObject = new JSONObject(http.post("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions", getHeaders(), transaction.toString()));
             receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
             return receipt;
@@ -184,6 +184,17 @@ public class Sdk {
     }
 
     /**
+     * @param genesisAccount
+     * @return
+     * @throws Exception
+     */
+    public String createGenesisTransactionString(Account genesisAccount, long tokens) throws Exception {
+        Account fromAccount = Account.create();
+        Transaction transaction = Transaction.create(fromAccount.getPrivateKey(), fromAccount.getAddress(), genesisAccount.getAddress(), Transaction.Type.TRANSFER_TOKENS, tokens, 0);
+        return transaction.toString();
+    }
+
+    /**
      * @param contact
      * @param id
      * @return
@@ -216,7 +227,7 @@ public class Sdk {
             List<Contact> contacts = sdk.getDelegates();
             Account fromAccount = sdk.createAccount();
             Account toAccount = sdk.createAccount();
-            Receipt receipt = sdk.transferTokens(contacts.get(0), "e7181240095e27679bf38e8ad77d37bedb5865b569157b4c14cdb1bebb7c6e2b", "79db55dd1c8ae495c267bde617f7a9e5d5c67719", toAccount.getAddress(), 45);
+            Receipt receipt = sdk.transferTokens(contacts.get(0), "e7181240095e27679bf38e8ad77d37bedb5865b569157b4c14cdb1bebb7c6e2b", "79db55dd1c8ae495c267bde617f7a9e5d5c67719", toAccount.getAddress(), 10000000);
             //Receipt receipt = sdk.transferTokens(contacts.get(0), fromAccount, toAccount, 45);
             System.out.println(receipt.getStatus());
 

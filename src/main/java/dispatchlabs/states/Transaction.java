@@ -184,15 +184,20 @@ public class Transaction extends AJson {
 
     /**
      *
+     * @param privateKey
+     * @param from
+     * @param to
+     * @param type
+     * @param value
+     * @param time
      * @return
      * @throws Exception
      */
-    public static Transaction create(String privateKey, String from, String to, long type, long value) throws Exception {
+    public static Transaction create(String privateKey, String from, String to, long type, long value, long time) throws Exception {
         byte[] privateKeyBytes = DatatypeConverter.parseHexBinary(privateKey);
         byte[] typeBytes = Utils.longToBytes(type);
         byte[] fromBytes = DatatypeConverter.parseHexBinary(from);
         byte[] toBytes = DatatypeConverter.parseHexBinary(to);
-        long time = System.currentTimeMillis();
         byte[] timeBytes = Utils.longToBytes(time);
         byte[] valueBytes = Utils.longToBytes(value);
 
