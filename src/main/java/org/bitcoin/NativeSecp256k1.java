@@ -17,6 +17,8 @@
 
 package org.bitcoin;
 
+import dispatchlabs.utils.Utils;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -55,6 +57,10 @@ public class NativeSecp256k1 {
         r.lock();
         try {
             byte[] ret = secp256k1_ecdsa_sign_recoverable(byteBuff, Secp256k1Context.getContext());
+
+            System.out.println(Utils.toHexString(ret));
+
+            int fook =0;
         } finally {
             r.unlock();
         }

@@ -3,22 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="88126769-82c6-4ff9-8d7c-174eef831e2e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dispatchlabs-sdk-java.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dispatchlabs-sdk-java.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dispatchlabs/crypto/Crypto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dispatchlabs/crypto/Crypto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dispatchlabs/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dispatchlabs/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/bitcoin/NativeSecp256k1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bitcoin/NativeSecp256k1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/bitcoin/NativeSecp256k1Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/bitcoin/NativeSecp256k1Util.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/bitcoin/Secp256k1Context.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dispatchlabs/crypto/Crypto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dispatchlabs/crypto/Crypto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dispatchlabs/states/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dispatchlabs/states/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dispatchlabs/states/Transaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dispatchlabs/states/Transaction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dispatchlabs/utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dispatchlabs/utils/Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/bitcoin/NativeSecp256k1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/bitcoin/NativeSecp256k1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/dispatchlabs-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/dispatchlabs-1.0.0.jar" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="org_bitcoin_NativeSecp256k1.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="org_bitcoin_NativeSecp256k1.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/secp256k1/src/java/org_bitcoin_NativeSecp256k1.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="510">
+              <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -95,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NativeSecp256k1.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="NativeSecp256k1.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/bitcoin/NativeSecp256k1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+            <state relative-caret-position="465">
+              <caret line="60" column="52" selection-start-line="60" selection-start-column="52" selection-end-line="60" selection-end-column="52" />
               <folding>
                 <element signature="e#0#15880#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -250,9 +235,9 @@
         <option value="$PROJECT_DIR$/build-secp256k1.sh" />
         <option value="$PROJECT_DIR$/secp256k1/src/java/org_bitcoin_NativeSecp256k1.h" />
         <option value="$PROJECT_DIR$/secp256k1/src/tests_exhaustive.c" />
-        <option value="$PROJECT_DIR$/src/main/java/org/bitcoin/NativeSecp256k1.java" />
         <option value="$PROJECT_DIR$/src/main/java/dispatchlabs/Sdk.java" />
         <option value="$PROJECT_DIR$/secp256k1/src/java/org_bitcoin_NativeSecp256k1.c" />
+        <option value="$PROJECT_DIR$/src/main/java/org/bitcoin/NativeSecp256k1.java" />
       </list>
     </option>
   </component>
@@ -268,7 +253,7 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="360" />
+    <option name="x" value="283" />
     <option name="y" value="23" />
     <option name="width" value="1933" />
     <option name="height" value="1280" />
@@ -285,17 +270,6 @@
             <path>
               <item name="outside" type="b2602c69:ProjectViewProjectNode" />
               <item name="java-sdk" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outside" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java-sdk" type="462c0819:PsiDirectoryNode" />
-              <item name="secp256k1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outside" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java-sdk" type="462c0819:PsiDirectoryNode" />
-              <item name="secp256k1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="outside" type="b2602c69:ProjectViewProjectNode" />
@@ -743,12 +717,12 @@
       <workItem from="1523490326357" duration="2452000" />
       <workItem from="1523493394213" duration="856000" />
       <workItem from="1523537535315" duration="21144000" />
-      <workItem from="1523561675109" duration="15415000" />
+      <workItem from="1523561675109" duration="16723000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="474272000" />
+    <option name="totallyTimeSpent" value="475580000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -760,7 +734,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="360" y="23" width="1933" height="1280" extended-state="0" />
+    <frame x="283" y="23" width="1933" height="1280" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -784,7 +758,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24987704" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49491665" weight="0.3744717" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49491665" visible="true" weight="0.3744717" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -804,10 +778,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/bitcoin/NativeSecp256k1.java</url>
+          <line>58</line>
+          <properties />
+          <option name="timeStamp" value="557" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="557" />
+      <option name="time" value="558" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1173,17 +1155,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/bitcoin/NativeSecp256k1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#15880#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/secp256k1/src/java/org_bitcoin_NativeSecp256k1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1200,8 +1171,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/secp256k1/src/java/org_bitcoin_NativeSecp256k1.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+        <state relative-caret-position="510">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/bitcoin/NativeSecp256k1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="60" column="52" selection-start-line="60" selection-start-column="52" selection-end-line="60" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#15880#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
