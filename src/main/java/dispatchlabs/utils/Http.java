@@ -146,7 +146,9 @@ public class Http implements AutoCloseable {
         while ((line = bufferedReader.readLine()) != null) {
             responseStringBuilder.append(line);
         }
-
+        if (!responseStringBuilder.toString().startsWith("{")) {
+            throw new Exception(responseStringBuilder.toString());
+        }
         return responseStringBuilder.toString();
     }
 

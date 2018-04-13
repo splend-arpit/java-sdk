@@ -38,7 +38,7 @@ public class Secp256k1Context {
             enabled = true;
         } catch (UnsatisfiedLinkError e) {
             System.out.println(e.toString());
-            System.out.println("make sure to set -Djava.library.path to the the secp256k1 library path");
+            System.out.println("make sure to set -Djava.library.path to the the secp256k1 library path (e.e.g, .../secp256k1/.libs");
             enabled = false;
         }
     }

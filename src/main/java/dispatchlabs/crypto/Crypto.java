@@ -2,7 +2,6 @@ package dispatchlabs.crypto;
 
 import org.bitcoin.NativeSecp256k1;
 import org.bouncycastle.jcajce.provider.digest.Keccak;
-import java.util.Arrays;
 
 /**
  *

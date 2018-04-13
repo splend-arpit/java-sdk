@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/dispatchlabs-sdk-java.iml" filepath="$PROJECT_DIR$/dispatchlabs-sdk-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dispatch-labs-java-sdk.iml" filepath="$PROJECT_DIR$/dispatch-labs-java-sdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/../m2-server/m2.iml" filepath="$PROJECT_DIR$/../m2-server/m2.iml" />
       <module fileurl="file://$PROJECT_DIR$/../m2-commons-java/m2-commons.iml" filepath="$PROJECT_DIR$/../m2-commons-java/m2-commons.iml" />
     </modules>

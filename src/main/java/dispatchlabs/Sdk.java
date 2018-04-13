@@ -1,19 +1,13 @@
 package dispatchlabs;
 
-import dispatchlabs.crypto.Crypto;
 import dispatchlabs.states.Account;
-import dispatchlabs.states.Action;
+import dispatchlabs.states.Receipt;
 import dispatchlabs.states.Contact;
 import dispatchlabs.states.Transaction;
 import dispatchlabs.utils.AJson;
 import dispatchlabs.utils.Http;
-import dispatchlabs.utils.Utils;
-import org.bitcoin.NativeSecp256k1;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +21,7 @@ public class Sdk {
      * Class level-declarations.
      */
     private String seedNodeIp;
+    private Receipt receipt;
 
     /**
      * @throws Exception
@@ -37,13 +32,30 @@ public class Sdk {
 
     /**
      * @return
+     */
+    public Receipt getReceipt() {
+        return receipt;
+    }
+
+    /**
+     * @return
      * @throws Exception
      */
     public List<Contact> getDelegates() throws Exception {
         try (Http http = new Http()) {
             JSONObject jsonObject = new JSONObject(http.get("http://" + seedNodeIp + ":1975/v1/delegates", getHeaders()));
+            receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
             return AJson.deserializeList(Contact.class, jsonObject.get("data").toString());
         }
+    }
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    public Account createAccount() throws Exception {
+         return Account.create();
     }
 
     /**
@@ -52,17 +64,124 @@ public class Sdk {
      * @param from
      * @param to
      * @param tokens
+     * @return
      * @throws Exception
      */
-    public Action transferTokens(Contact contact, String privateKey, String from, String to, long tokens) throws Exception {
+    public Receipt transferTokens(Contact contact, String privateKey, String from, String to, long tokens) throws Exception {
         try (Http http = new Http()) {
             Transaction transaction = Transaction.create(privateKey, from, to, Transaction.Type.TRANSFER_TOKENS, tokens);
-            String response = http.post("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions", getHeaders(), transaction.toString());
-
-            int fook=0;
+            JSONObject jsonObject = new JSONObject(http.post("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions", getHeaders(), transaction.toString()));
+            receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
+            return receipt;
         }
+    }
 
-        return null;
+    /**
+     *
+     * @param contact
+     * @param fromAccount
+     * @param toAccount
+     * @param tokens
+     * @return
+     * @throws Exception
+     */
+    public Receipt transferTokens(Contact contact, Account fromAccount, Account toAccount, long tokens) throws Exception {
+        try (Http http = new Http()) {
+            Transaction transaction = Transaction.create(fromAccount.getPrivateKey(), fromAccount.getAddress(), toAccount.getAddress(), Transaction.Type.TRANSFER_TOKENS, tokens);
+            JSONObject jsonObject = new JSONObject(http.post("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions", getHeaders(), transaction.toString()));
+            receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
+            return receipt;
+        }
+    }
+
+    /**
+     * @param contact
+     * @param address
+     * @return
+     * @throws Exception
+     */
+    public Account getAccount(Contact contact, String address) throws Exception {
+        try (Http http = new Http()) {
+            JSONObject jsonObject = new JSONObject(http.get("http://" + contact.getEndpoint().getHost() + ":1975/v1/accounts/" + address, getHeaders()));
+            receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
+            if (receipt.getStatus() == Receipt.Status.OK) {
+                return (Account) AJson.deserialize(Account.class, jsonObject.get("data").toString());
+            }
+            return null;
+        }
+    }
+
+    /**
+     * @param contact
+     * @param address
+     * @return
+     * @throws Exception
+     */
+    public List<Transaction> getTransactionsByFromAddress(Contact contact, String address) throws Exception {
+        try (Http http = new Http()) {
+            JSONObject jsonObject = new JSONObject(http.get("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions/from/" + address, getHeaders()));
+            receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
+            if (receipt.getStatus() == Receipt.Status.OK) {
+                return AJson.deserializeList(Contact.class, jsonObject.get("data").toString());
+            }
+            return null;
+        }
+    }
+
+    /**
+     * @param contact
+     * @param address
+     * @return
+     * @throws Exception
+     */
+    public List<Transaction> getTransactionsByToAddress(Contact contact, String address) throws Exception {
+        try (Http http = new Http()) {
+            JSONObject jsonObject = new JSONObject(http.get("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions/to/" + address, getHeaders()));
+            receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
+            if (receipt.getStatus() == Receipt.Status.OK) {
+                return AJson.deserializeList(Contact.class, jsonObject.get("data").toString());
+            }
+            return null;
+        }
+    }
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    public Receipt getLastStatus() throws Exception {
+        if (receipt == null) {
+            return null;
+        }
+        return getStatus(receipt);
+    }
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    public Receipt getStatus(Receipt receipt) throws Exception {
+        try (Http http = new Http()) {
+            JSONObject jsonObject = new JSONObject(http.get("http://" + receipt.getNodeIp() + ":1975/v1/statuses/" + receipt.getId(), getHeaders()));
+            this.receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
+            return this.receipt;
+        }
+    }
+
+    /**
+     * @param contact
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public Receipt getStatus(Contact contact, String id) throws Exception {
+        try (Http http = new Http()) {
+            JSONObject jsonObject = new JSONObject(http.get("http://" + contact.getEndpoint().getHost() + ":1975/v1/statuses/" + id, getHeaders()));
+            receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
+            return receipt;
+        }
     }
 
     /**
@@ -79,21 +198,19 @@ public class Sdk {
      */
     public static void main(String args[]) {
         try {
-            /*
-            Account fromAccount = Account.create();
-            Account toAccount = Account.create();
-            */
-
             Sdk sdk = new Sdk("10.0.1.2");
-
             List<Contact> contacts = sdk.getDelegates();
+            Account account = sdk.createAccount();
+            Receipt receipt = sdk.transferTokens(contacts.get(0), "e7181240095e27679bf38e8ad77d37bedb5865b569157b4c14cdb1bebb7c6e2b", "79db55dd1c8ae495c267bde617f7a9e5d5c67719", account.getAddress(), 45);
+            System.out.println(receipt.getStatus());
 
-            sdk.transferTokens(contacts.get(0), "e7181240095e27679bf38e8ad77d37bedb5865b569157b4c14cdb1bebb7c6e2b", "79db55dd1c8ae495c267bde617f7a9e5d5c67719", "43f603c04610c87326e88fcd24152406d23da032", 45);
-
-            int fook = 0;
-
+            // Pending?
+            while ((receipt = sdk.getLastStatus()).getStatus().equals(Receipt.Status.PENDING)) {
+                Thread.sleep(100);
+            }
+            System.out.println(receipt.getStatus());
         } catch (Throwable t) {
-            int fook = 0;
+           System.out.println(t);
         }
     }
 
