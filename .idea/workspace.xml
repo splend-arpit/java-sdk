@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88126769-82c6-4ff9-8d7c-174eef831e2e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build-secp256k1.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dispatchlabs-sdk-java.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dispatch-labs-java-sdk.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dispatchlabs/Sdk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dispatchlabs/Sdk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dispatchlabs/crypto/Crypto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dispatchlabs/crypto/Crypto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Receipt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dispatchlabs/utils/Http.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dispatchlabs/utils/Http.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/bitcoin/Secp256k1Context.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bitcoin/Secp256k1Context.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,14 +16,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Sdk.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Sdk.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dispatchlabs/Sdk.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="205" column="12" selection-start-line="205" selection-start-column="12" selection-end-line="205" selection-end-column="12" />
+            <state relative-caret-position="136">
+              <caret line="118" column="7" lean-forward="true" selection-start-line="118" selection-start-column="7" selection-end-line="118" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -119,7 +120,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/outside/action/loan/PreQualifyAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/outside/job/ApproveLoanAppJob.java" />
         <option value="$PROJECT_DIR$/../m2-server/db/m2.sql" />
         <option value="$PROJECT_DIR$/../m2-server/src/main/java/m2/db/entity/App.java" />
@@ -170,6 +170,7 @@
         <option value="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Receipt.java" />
         <option value="$PROJECT_DIR$/src/main/java/dispatchlabs/utils/Http.java" />
         <option value="$PROJECT_DIR$/src/main/java/dispatchlabs/Sdk.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -207,63 +208,7 @@
             <path>
               <item name="dispatch-labs-java-sdk" type="b2602c69:ProjectViewProjectNode" />
               <item name="java-sdk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dispatch-labs-java-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java-sdk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dispatch-labs-java-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java-sdk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dispatch-labs-java-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java-sdk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="dispatchlabs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dispatch-labs-java-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java-sdk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="dispatchlabs" type="462c0819:PsiDirectoryNode" />
-              <item name="crypto" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dispatch-labs-java-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java-sdk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="dispatchlabs" type="462c0819:PsiDirectoryNode" />
-              <item name="states" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dispatch-labs-java-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java-sdk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="dispatchlabs" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dispatch-labs-java-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java-sdk" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="bitcoin" type="462c0819:PsiDirectoryNode" />
+              <item name="secp256k1" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -652,12 +597,12 @@
       <workItem from="1523561675109" duration="17351000" />
       <workItem from="1523583707956" duration="727000" />
       <workItem from="1523584504466" duration="171000" />
-      <workItem from="1523589696290" duration="7522000" />
+      <workItem from="1523589696290" duration="7815000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="484964000" />
+    <option name="totallyTimeSpent" value="485257000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -686,14 +631,14 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32121724" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16897655" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16897655" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24987704" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49491665" visible="true" weight="0.3744717" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49491665" weight="0.3744717" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -750,13 +695,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/bitcoin/Secp256k1Context.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dispatchlabs/crypto/Utils.java" />
     <entry file="file://$PROJECT_DIR$/secp256k1/libsecp256k1/src/java/org_bitcoin_NativeSecp256k1.h" />
     <entry file="file://$PROJECT_DIR$/libsecp256k1/src/java/org/bitcoin/Secp256k1Context.java" />
@@ -1036,11 +974,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dispatchlabs/Sdk.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="205" column="12" selection-start-line="205" selection-start-column="12" selection-end-line="205" selection-end-column="12" />
+        <state relative-caret-position="136">
+          <caret line="118" column="7" lean-forward="true" selection-start-line="118" selection-start-column="7" selection-end-line="118" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
         </state>
       </provider>
     </entry>

@@ -8,3 +8,5 @@
 /nbproject/private/
 /classes/
 /target/
+/.libs/
+*.o
