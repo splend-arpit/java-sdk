@@ -1,21 +1,28 @@
 package dispatchlabs.crypto;
 
-import dispatchlabs.states.Account;
-import dispatchlabs.states.Transaction;
 import org.bitcoin.NativeSecp256k1;
 import org.bouncycastle.jcajce.provider.digest.Keccak;
+import java.util.Arrays;
 
+/**
+ *
+ */
 public class Crypto {
 
     /**
      *
-     * @param bytes
      * @param privateKey
+     * @param bytes
      * @return
      * @throws Exception
      */
-    public static byte[] sign(byte[] bytes, byte[] privateKey) throws Exception {
-        return NativeSecp256k1.sign(bytes, privateKey);
+    public static byte[] sign(byte[] privateKey, byte[] bytes) throws Exception {
+        /*
+        byte[] signature = NativeSecp256k1.Sign(bytes, privateKey);
+        signature = Arrays.copyOfRange(signature, 5, signature.length);
+        return signature;
+        */
+        return null;
     }
 
     /**
@@ -26,23 +33,5 @@ public class Crypto {
         final Keccak.Digest256 keccak = new Keccak.Digest256();
         keccak.update(bytes);
         return keccak.digest();
-    }
-
-
-
-    /**
-     * @param args
-     */
-    public static void main(String args[]) {
-
-        try {
-            Account fromAccount = Account.create();
-            Account toAccount = Account.create();
-            Transaction transaction = Transaction.create(fromAccount.getPrivateKey(), fromAccount.getAddress(), toAccount.getAddress(), 0, 999);
-
-        } catch (Throwable t) {
-            int fook = 0;
-        }
-
     }
 }

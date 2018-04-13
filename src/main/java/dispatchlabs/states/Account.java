@@ -2,6 +2,7 @@ package dispatchlabs.states;
 
 import dispatchlabs.crypto.Crypto;
 import dispatchlabs.crypto.Key;
+import dispatchlabs.utils.AJson;
 import dispatchlabs.utils.Utils;
 
 import java.sql.Timestamp;
@@ -9,7 +10,7 @@ import java.sql.Timestamp;
 /**
  *
  */
-public class Account {
+public class Account extends AJson {
 
     /**
      * Class level-declarations.

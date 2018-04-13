@@ -1,7 +1,11 @@
 package dispatchlabs.utils;
 
+import dispatchlabs.crypto.Crypto;
+
 import javax.xml.bind.DatatypeConverter;
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -62,12 +66,29 @@ public class Utils {
      * @return
      */
     public static byte[] longToBytes(long value) {
-        byte[] bytes = new byte[8];
-        for (int i = 0; i < bytes.length; i++) {
-            byte b = (byte)(value & 0xff);
-            bytes [i] = b;
-            value = (value - b) / 256;
+        ByteBuffer byteBuffer = ByteBuffer.allocate(Long.BYTES);
+        byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putLong(0, value);
+        return byteBuffer.array();
+    }
+
+    /**
+     *
+     * @param publicKey
+     * @return
+     * @throws Exception
+     */
+    public static String toAddressFromPublicKey(String publicKey) throws Exception {
+        byte[] publicKeyBytes = toByteArray(publicKey);
+        byte[] hashablePublicKey = new byte[32];
+        for (int i=1; i<publicKeyBytes.length; i++) {
+            hashablePublicKey[i-1] = publicKeyBytes[i];
         }
-        return bytes;
+        byte[] hash = Crypto.hash(hashablePublicKey);
+        byte[] address = new byte[20];
+        for (int i=0; i<address.length; i++) {
+            address[i] = hash[i+12];
+        }
+        return toHexString(address);
     }
 }

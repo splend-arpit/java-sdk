@@ -1,6 +1,7 @@
 package dispatchlabs.states;
 
 import dispatchlabs.crypto.Crypto;
+import dispatchlabs.utils.AJson;
 import dispatchlabs.utils.Utils;
 
 import javax.xml.bind.DatatypeConverter;
@@ -9,7 +10,20 @@ import java.io.ByteArrayOutputStream;
 /**
  * Transaction
  */
-public class Transaction {
+public class Transaction extends AJson {
+
+    /**
+     *
+     */
+    public static class Type {
+
+        /**
+         * Class level-declarations.
+         */
+        public final static byte TRANSFER_TOKENS = 0;
+        public final static byte SET_NAME = 1;
+        public final static byte SMART_CONTRACT = 2;
+    }
 
     /**
      * Class level-declarations.
@@ -173,7 +187,7 @@ public class Transaction {
      * @return
      * @throws Exception
      */
-    public static Transaction create(String privateKey, String from, String to, int type, int value) throws Exception {
+    public static Transaction create(String privateKey, String from, String to, long type, long value) throws Exception {
         byte[] privateKeyBytes = DatatypeConverter.parseHexBinary(privateKey);
         byte[] typeBytes = Utils.longToBytes(type);
         byte[] fromBytes = DatatypeConverter.parseHexBinary(from);
