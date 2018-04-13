@@ -2,11 +2,11 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>dispatchlabs</groupId>
-    <artifactId>dispatchlabs</artifactId>
+    <artifactId>dispatchlabs-sdk</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>dispatchlabs</name>
+    <name>dispatchlabs-sdk</name>
     <url></url>
 
     <prerequisites>
