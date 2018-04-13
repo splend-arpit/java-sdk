@@ -17,8 +17,6 @@
 
 package org.bitcoin;
 
-import dispatchlabs.utils.Utils;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -26,23 +24,25 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * <p>This class holds native methods to handle ECDSA verification.</p>
  *
- * <p>You can find an example library that can be used for this at https://github.com/bitcoin/secp256k1</p>
- *
- * <p>To build secp256k1 for use with bitcoinj, run
- * `./configure --enable-jni --enable-experimental --enable-module-ecdh`
- * and `make` then copy `.libs/libsecp256k1.so` to your system library path
- * or point the JVM to the folder containing it with -Djava.library.path
- * </p>
  */
 public class NativeSecp256k1 {
 
-    private static final ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
-    private static final Lock r = rwl.readLock();
-    private static final Lock w = rwl.writeLock();
+    /**
+     * Class level-declarations.
+     */
+    private static final ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
+    private static final Lock readLock = reentrantReadWriteLock.readLock();
+    private static final Lock writeLock = reentrantReadWriteLock.writeLock();
     private static ThreadLocal<ByteBuffer> nativeECDSABuffer = new ThreadLocal<ByteBuffer>();
 
+    /**
+     *
+      * @param privateKey
+     * @param hash
+     * @return
+     * @throws Exception
+     */
     public static byte[] sign(byte[] privateKey, byte[] hash) throws Exception {
         ByteBuffer byteBuff = nativeECDSABuffer.get();
         if (byteBuff == null || byteBuff.capacity() < 64) {
@@ -54,20 +54,19 @@ public class NativeSecp256k1 {
         byteBuff.put(privateKey);
         byteBuff.put(hash);
 
-        r.lock();
+        readLock.lock();
         try {
-            byte[] ret = secp256k1_ecdsa_sign_recoverable(byteBuff, Secp256k1Context.getContext());
-
-            System.out.println(Utils.toHexString(ret));
-
-            int fook =0;
+            return secp256k1_sign_and_serialize_compact(byteBuff, Secp256k1Context.getContext());
         } finally {
-            r.unlock();
+            readLock.unlock();
         }
-
-        return null;
     }
 
-    private static native byte[] secp256k1_ecdsa_sign_recoverable(ByteBuffer byteBuff, long context);
-    private static native byte[] secp256k1_ecdsa_recoverable_signature_serialize_compact(ByteBuffer byteBuff, long context);
+    /**
+     *
+     * @param byteBuff
+     * @param context
+     * @return
+     */
+    private static native byte[] secp256k1_sign_and_serialize_compact(ByteBuffer byteBuff, long context);
 }

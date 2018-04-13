@@ -17,35 +17,51 @@
 package org.bitcoin;
 
 /**
- * This class holds the context reference used in native methods 
+ * This class holds the context reference used in native methods
  * to handle ECDSA operations.
  */
 public class Secp256k1Context {
-  private static final boolean enabled; //true if the library is loaded
-  private static final long context; //ref to pointer to context obj
 
-  static { //static initializer
-      boolean isEnabled = true;
-      long contextRef = -1;
-      try {
-          System.loadLibrary("secp256k1");
-          contextRef = secp256k1_init_context();
-      } catch (UnsatisfiedLinkError e) {
-          System.out.println("UnsatisfiedLinkError: " + e.toString());
-          isEnabled = false;
-      }
-      enabled = isEnabled;
-      context = contextRef;
-  }
+    /**
+     * Class level-declarations.
+     */
+    private static boolean enabled;
+    private static long context = -1;
 
-  public static boolean isEnabled() {
-     return enabled;
-  }
+    /**
+     *
+     */
+    static {
+        try {
+            System.loadLibrary("secp256k1");
+            context = secp256k1_init_context();
+            enabled = true;
+        } catch (UnsatisfiedLinkError e) {
+            System.out.println(e.toString());
+            System.out.println("make sure to set -Djava.library.path to the the secp256k1 library path");
+            enabled = false;
+        }
+    }
 
-  public static long getContext() {
-     if(!enabled) return -1; //sanity check
-     return context;
-  }
+    /**
+     *
+     * @return
+     */
+    public static boolean isEnabled() {
+        return enabled;
+    }
 
-  private static native long secp256k1_init_context();
+    /**
+     *
+     * @return
+     */
+    public static long getContext() {
+        return context;
+    }
+
+    /**
+     *
+     * @return
+     */
+    private static native long secp256k1_init_context();
 }

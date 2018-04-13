@@ -84,17 +84,6 @@ public class Sdk {
             Account toAccount = Account.create();
             */
 
-
-            byte[] msg = new byte[32];
-            for (int i=0; i<32; i++) {
-                msg[i] = (byte)0xcc;
-            }
-
-
-            NativeSecp256k1.sign(Utils.toByteArray("2093fde230170efc92b2c122b8b831b30f916dd5568b50a427caa76e13e7effd"), msg);
-
-
-
             Sdk sdk = new Sdk("10.0.1.2");
 
             List<Contact> contacts = sdk.getDelegates();

@@ -1,4 +1,4 @@
-<project name="outside" basedir=".">
+<project name="dispatch-labs-java-sdk" basedir=".">
 
     <!-- Target release -->
     <target name="release">

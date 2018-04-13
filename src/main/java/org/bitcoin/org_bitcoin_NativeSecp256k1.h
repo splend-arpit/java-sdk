@@ -9,18 +9,10 @@ extern "C" {
 #endif
 /*
  * Class:     org_bitcoin_NativeSecp256k1
- * Method:    secp256k1_ecdsa_sign_recoverable
+ * Method:    secp256k1_sign_and_serialize_compact
  * Signature: (Ljava/nio/ByteBuffer;J)[B
  */
-JNIEXPORT jbyteArray JNICALL Java_org_bitcoin_NativeSecp256k1_secp256k1_1ecdsa_1sign_1recoverable
-  (JNIEnv *, jclass, jobject, jlong);
-
-/*
- * Class:     org_bitcoin_NativeSecp256k1
- * Method:    secp256k1_ecdsa_recoverable_signature_serialize_compact
- * Signature: (Ljava/nio/ByteBuffer;J)[B
- */
-JNIEXPORT jbyteArray JNICALL Java_org_bitcoin_NativeSecp256k1_secp256k1_1ecdsa_1recoverable_1signature_1serialize_1compact
+JNIEXPORT jbyteArray JNICALL Java_org_bitcoin_NativeSecp256k1_secp256k1_1sign_1and_1serialize_1compact
   (JNIEnv *, jclass, jobject, jlong);
 
 #ifdef __cplusplus

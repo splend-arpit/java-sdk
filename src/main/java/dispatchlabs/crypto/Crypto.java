@@ -12,17 +12,12 @@ public class Crypto {
     /**
      *
      * @param privateKey
-     * @param bytes
+     * @param hash
      * @return
      * @throws Exception
      */
-    public static byte[] sign(byte[] privateKey, byte[] bytes) throws Exception {
-        /*
-        byte[] signature = NativeSecp256k1.Sign(bytes, privateKey);
-        signature = Arrays.copyOfRange(signature, 5, signature.length);
-        return signature;
-        */
-        return null;
+    public static byte[] sign(byte[] privateKey, byte[] hash) throws Exception {
+        return NativeSecp256k1.sign(privateKey, hash);
     }
 
     /**
