@@ -51,12 +51,11 @@ public class Sdk {
     }
 
     /**
-     *
      * @return
      * @throws Exception
      */
     public Account createAccount() throws Exception {
-         return Account.create();
+        return Account.create();
     }
 
     /**
@@ -78,7 +77,6 @@ public class Sdk {
     }
 
     /**
-     *
      * @param contact
      * @param fromAccount
      * @param toAccount
@@ -113,7 +111,6 @@ public class Sdk {
     }
 
     /**
-     *
      * @param contact
      * @return
      * @throws Exception
@@ -164,7 +161,6 @@ public class Sdk {
     }
 
     /**
-     *
      * @return
      * @throws Exception
      */
@@ -176,7 +172,6 @@ public class Sdk {
     }
 
     /**
-     *
      * @return
      * @throws Exception
      */
@@ -201,7 +196,7 @@ public class Sdk {
             return receipt;
         }
     }
-
+    
     /**
      * @return @throws Exception
      */
@@ -219,8 +214,10 @@ public class Sdk {
         try {
             Sdk sdk = new Sdk("10.0.1.2");
             List<Contact> contacts = sdk.getDelegates();
-            Account account = sdk.createAccount();
-            Receipt receipt = sdk.transferTokens(contacts.get(0), "e7181240095e27679bf38e8ad77d37bedb5865b569157b4c14cdb1bebb7c6e2b", "79db55dd1c8ae495c267bde617f7a9e5d5c67719", account.getAddress(), 45);
+            Account fromAccount = sdk.createAccount();
+            Account toAccount = sdk.createAccount();
+            Receipt receipt = sdk.transferTokens(contacts.get(0), "e7181240095e27679bf38e8ad77d37bedb5865b569157b4c14cdb1bebb7c6e2b", "79db55dd1c8ae495c267bde617f7a9e5d5c67719", toAccount.getAddress(), 45);
+            //Receipt receipt = sdk.transferTokens(contacts.get(0), fromAccount, toAccount, 45);
             System.out.println(receipt.getStatus());
 
             // Pending?
@@ -233,7 +230,7 @@ public class Sdk {
             List<Transaction> transactions = sdk.getTransactions(contacts.get(0));
             System.out.println(transactions);
         } catch (Throwable t) {
-           System.out.println(t);
+            System.out.println(t);
         }
     }
 
