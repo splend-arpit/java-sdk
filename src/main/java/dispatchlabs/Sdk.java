@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  *
  */
@@ -104,8 +105,25 @@ public class Sdk {
         try (Http http = new Http()) {
             JSONObject jsonObject = new JSONObject(http.get("http://" + contact.getEndpoint().getHost() + ":1975/v1/accounts/" + address, getHeaders()));
             receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
-            if (receipt.getStatus() == Receipt.Status.OK) {
+            if (receipt.isOk()) {
                 return (Account) AJson.deserialize(Account.class, jsonObject.get("data").toString());
+            }
+            return null;
+        }
+    }
+
+    /**
+     *
+     * @param contact
+     * @return
+     * @throws Exception
+     */
+    public List<Transaction> getTransactions(Contact contact) throws Exception {
+        try (Http http = new Http()) {
+            JSONObject jsonObject = new JSONObject(http.get("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions", getHeaders()));
+            receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
+            if (receipt.isOk()) {
+                return AJson.deserializeList(Transaction.class, jsonObject.get("data").toString());
             }
             return null;
         }
@@ -121,8 +139,8 @@ public class Sdk {
         try (Http http = new Http()) {
             JSONObject jsonObject = new JSONObject(http.get("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions/from/" + address, getHeaders()));
             receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
-            if (receipt.getStatus() == Receipt.Status.OK) {
-                return AJson.deserializeList(Contact.class, jsonObject.get("data").toString());
+            if (receipt.isOk()) {
+                return AJson.deserializeList(Transaction.class, jsonObject.get("data").toString());
             }
             return null;
         }
@@ -138,8 +156,8 @@ public class Sdk {
         try (Http http = new Http()) {
             JSONObject jsonObject = new JSONObject(http.get("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions/to/" + address, getHeaders()));
             receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
-            if (receipt.getStatus() == Receipt.Status.OK) {
-                return AJson.deserializeList(Contact.class, jsonObject.get("data").toString());
+            if (receipt.isOk()) {
+                return AJson.deserializeList(Transaction.class, jsonObject.get("data").toString());
             }
             return null;
         }
@@ -197,6 +215,7 @@ public class Sdk {
      * @param args
      */
     public static void main(String args[]) {
+        System.out.println("Dispatch Labs SDK Example");
         try {
             Sdk sdk = new Sdk("10.0.1.2");
             List<Contact> contacts = sdk.getDelegates();
@@ -209,6 +228,10 @@ public class Sdk {
                 Thread.sleep(100);
             }
             System.out.println(receipt.getStatus());
+
+            // Get transactions.
+            List<Transaction> transactions = sdk.getTransactions(contacts.get(0));
+            System.out.println(transactions);
         } catch (Throwable t) {
            System.out.println(t);
         }
