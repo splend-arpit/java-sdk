@@ -29,7 +29,7 @@ public class Transaction extends AJson {
      * Class level-declarations.
      */
     private String hash;
-    private long type;
+    private byte type;
     private String from;
     private String fromName;
     private String to;
@@ -58,7 +58,7 @@ public class Transaction extends AJson {
      *
      * @return
      */
-    public long getType() {
+    public byte getType() {
         return type;
     }
 
@@ -66,7 +66,7 @@ public class Transaction extends AJson {
      *
      * @param type
      */
-    public void setType(long type) {
+    public void setType(byte type) {
         this.type = type;
     }
 
@@ -193,9 +193,9 @@ public class Transaction extends AJson {
      * @return
      * @throws Exception
      */
-    public static Transaction create(String privateKey, String from, String to, long type, long value, long time) throws Exception {
+    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time) throws Exception {
         byte[] privateKeyBytes = DatatypeConverter.parseHexBinary(privateKey);
-        byte[] typeBytes = Utils.longToBytes(type);
+        byte[] typeBytes = {type};
         byte[] fromBytes = DatatypeConverter.parseHexBinary(from);
         byte[] toBytes = DatatypeConverter.parseHexBinary(to);
         byte[] timeBytes = Utils.longToBytes(time);
