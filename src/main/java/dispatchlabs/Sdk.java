@@ -227,8 +227,7 @@ public class Sdk {
             List<Contact> contacts = sdk.getDelegates();
             Account fromAccount = sdk.createAccount();
             Account toAccount = sdk.createAccount();
-            Receipt receipt = sdk.transferTokens(contacts.get(0), "e7181240095e27679bf38e8ad77d37bedb5865b569157b4c14cdb1bebb7c6e2b", "79db55dd1c8ae495c267bde617f7a9e5d5c67719", toAccount.getAddress(), 10000000);
-            //Receipt receipt = sdk.transferTokens(contacts.get(0), fromAccount, toAccount, 45);
+            Receipt receipt = sdk.transferTokens(contacts.get(0), fromAccount, toAccount, 45);
             System.out.println(receipt.getStatus());
 
             // Pending?
@@ -244,5 +243,4 @@ public class Sdk {
             System.out.println(t);
         }
     }
-
 }
