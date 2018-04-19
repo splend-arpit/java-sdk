@@ -223,11 +223,11 @@ public class Sdk {
     public static void main(String args[]) {
         System.out.println("Dispatch Labs SDK Example");
         try {
-            Sdk sdk = new Sdk("10.0.1.2");
+            Sdk sdk = new Sdk("10.0.1.3");
             List<Contact> contacts = sdk.getDelegates();
-            Account fromAccount = sdk.createAccount();
+            Account genesisAccount = sdk.createAccount();
             Account toAccount = sdk.createAccount();
-            Receipt receipt = sdk.transferTokens(contacts.get(0), fromAccount, toAccount, 45);
+            Receipt receipt = sdk.transferTokens(contacts.get(0), genesisAccount, toAccount, 45);
             System.out.println(receipt.getStatus());
 
             // Pending?
