@@ -21,14 +21,12 @@ JNIEXPORT jbyteArray JNICALL Java_org_bitcoin_NativeSecp256k1_secp256k1_1sign_1a
   const unsigned char* privateKey = (unsigned char*) buffer;
   const unsigned char* hash = (unsigned char*) (buffer + 32);
 
-  // Create signature.
   secp256k1_ecdsa_recoverable_signature sigstruct;
   int ret = secp256k1_ecdsa_sign_recoverable(context, &sigstruct, hash, privateKey, NULL, NULL);
   if (ret != 1) {
     return NULL;
   }
 
-  // Serialize and compact signature.
   unsigned char signature[65];
   int recid;
   ret = secp256k1_ecdsa_recoverable_signature_serialize_compact(context, &signature[0], &recid, &sigstruct);
