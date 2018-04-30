@@ -223,7 +223,7 @@ public class Sdk {
     public static void main(String args[]) {
         System.out.println("Dispatch Labs SDK Example");
         try {
-            Sdk sdk = new Sdk("10.0.1.3");
+            Sdk sdk = new Sdk("127.0.0.1");
             List<Contact> contacts = sdk.getDelegates();
             Account genesisAccount = sdk.createAccount();
             Account toAccount = sdk.createAccount();
