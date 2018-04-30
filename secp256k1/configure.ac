@@ -127,7 +127,7 @@ AC_ARG_ENABLE(ecmult_static_precomputation,
 AC_ARG_ENABLE(module_ecdh,
     AS_HELP_STRING([--enable-module-ecdh],[enable ECDH shared secret computation (experimental)]),
     [enable_module_ecdh=$enableval],
-    [enable_module_ecdh=no])
+    [enable_module_ecdh=yes])
 
 AC_ARG_ENABLE(module_recovery,
     AS_HELP_STRING([--enable-module-recovery],[enable ECDSA pubkey recovery module (default is no)]),
@@ -137,7 +137,7 @@ AC_ARG_ENABLE(module_recovery,
 AC_ARG_ENABLE(jni,
     AS_HELP_STRING([--enable-jni],[enable libsecp256k1_jni (default is no)]),
     [use_jni=$enableval],
-    [use_jni=no])
+    [use_jni=yes])
 
 AC_ARG_WITH([field], [AS_HELP_STRING([--with-field=64bit|32bit|auto],
 [Specify Field Implementation. Default is auto])],[req_field=$withval], [req_field=auto])
