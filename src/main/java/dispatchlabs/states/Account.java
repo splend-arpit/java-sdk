@@ -126,7 +126,11 @@ public class Account extends AJson {
     public static Account create() throws Exception {
         Key key = new Key();
         byte[] publicKey = key.getPublicKeyBytes();
-        byte[] hashablePublicKey = new byte[32];
+
+        System.out.println(Utils.toHexString(publicKey));
+
+
+        byte[] hashablePublicKey = new byte[publicKey.length-1];
         for (int i=1; i<publicKey.length; i++) {
             hashablePublicKey[i-1] = publicKey[i];
         }
