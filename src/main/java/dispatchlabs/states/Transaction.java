@@ -209,7 +209,7 @@ public class Transaction extends AJson {
         byteArrayOutputStream.write(valueBytes);
         byteArrayOutputStream.write(timeBytes);
         byte[] hashBytes = Crypto.hash(byteArrayOutputStream.toByteArray());
-        byte[] signatureBytes = Crypto.sign(hashBytes, privateKeyBytes);
+        byte[] signatureBytes = Crypto.sign(privateKeyBytes, hashBytes);
 
         // Create transaction.
         Transaction transaction = new Transaction();
