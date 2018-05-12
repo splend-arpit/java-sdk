@@ -33,7 +33,7 @@ public class Receipt extends AJson {
         /**
          * Class level-declarations.
          */
-        public final static String PENDING = "PENDING";
+        public final static String PENDING = "Pending";
         public final static String OK = "OK";
         public final static String NOT_FOUND = "NOT_FOUND";
         public final static String INVALID_TRANSACTION = "INVALID_TRANSACTION";

@@ -223,22 +223,33 @@ public class Sdk {
     public static void main(String args[]) {
         System.out.println("Dispatch Labs SDK Example");
         try {
-            Sdk sdk = new Sdk("10.0.1.3");
+            Sdk sdk = new Sdk("10.0.1.11");
             List<Contact> contacts = sdk.getDelegates();
-            Account genesisAccount = sdk.createAccount();
+
+            /*
+            Account fromAccount = sdk.createAccount();
             Account toAccount = sdk.createAccount();
-            Receipt receipt = sdk.transferTokens(contacts.get(0), genesisAccount, toAccount, 45);
-            System.out.println(receipt.getStatus());
+            Receipt receipt = sdk.transferTokens(contacts.get(0), fromAccount, toAccount, 45);
+            */
 
-            // Pending?
-            while ((receipt = sdk.getLastStatus()).getStatus().equals(Receipt.Status.PENDING)) {
-                Thread.sleep(100);
+
+
+
+            for (int i=0; i<1000; i++) {
+                Receipt receipt = sdk.transferTokens(contacts.get(0), "0f86ea981203b26b5b8244c8f661e30e5104555068a4bd168d3e3015db9bb25a", "3ed25f42484d517cdfc72cafb7ebc9e8baa52c2c", "1dcfccb29a15aa5bfb70ce944c745eb421d04bb5", 69);
+
+
+
+                /*
+                // Pending?
+                while ((receipt = sdk.getLastStatus()).getStatus().equals(Receipt.Status.PENDING)) {
+                    Thread.sleep(200);
+                }
+
+                System.out.println(receipt.getStatus());
+                */
             }
-            System.out.println(receipt.getStatus());
-
-            // Get transactions.
-            List<Transaction> transactions = sdk.getTransactions(contacts.get(0));
-            System.out.println(transactions);
+            
         } catch (Throwable t) {
             System.out.println(t);
         }
