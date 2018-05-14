@@ -16,10 +16,10 @@
         System.out.println("Dispatch Labs SDK Example");
         try {
             Sdk sdk = new Sdk("10.0.1.2");
-            List<Contact> contacts = sdk.getDelegates();
+            List<Contact> nodes = sdk.getDelegates();
             Account fromAccount = sdk.createAccount();
             Account toAccount = sdk.createAccount();
-            Receipt receipt = sdk.transferTokens(contacts.get(0), fromAccount, toAccount, 45);
+            Receipt receipt = sdk.transferTokens(nodes.get(0), fromAccount, toAccount, 45);
             System.out.println(receipt.getStatus());
 
             // Pending?
@@ -29,7 +29,7 @@
             System.out.println(receipt.getStatus());
 
             // Get transactions.
-            List<Transaction> transactions = sdk.getTransactions(contacts.get(0));
+            List<Transaction> transactions = sdk.getTransactions(nodes.get(0));
             System.out.println(transactions);
         } catch (Throwable t) {
             System.out.println(t);
