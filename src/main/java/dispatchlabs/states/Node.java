@@ -5,7 +5,7 @@ import dispatchlabs.utils.AJson;
 /**
  *
  */
-public class Contact extends AJson {
+public class Node extends AJson {
 
     /**
      * Class level-declarations.

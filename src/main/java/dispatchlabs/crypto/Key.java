@@ -1,62 +1,62 @@
 package dispatchlabs.crypto;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
 import dispatchlabs.utils.Utils;
+import org.spongycastle.asn1.sec.SECNamedCurves;
 import org.spongycastle.asn1.x9.X9ECParameters;
 import org.spongycastle.crypto.AsymmetricCipherKeyPair;
-import org.spongycastle.crypto.ec.CustomNamedCurves;
 import org.spongycastle.crypto.generators.ECKeyPairGenerator;
 import org.spongycastle.crypto.params.ECDomainParameters;
 import org.spongycastle.crypto.params.ECKeyGenerationParameters;
 import org.spongycastle.crypto.params.ECPrivateKeyParameters;
 import org.spongycastle.crypto.params.ECPublicKeyParameters;
-import org.spongycastle.math.ec.FixedPointUtil;
-
-import java.math.BigInteger;
-import java.security.SecureRandom;
 
 /**
  *
  */
 public class Key {
-
-    /**
-     *
-     */
-    private BigInteger privateKey;
-    protected LazyECPoint publicKey;
-    private static SecureRandom secureRandom;
-    private static final X9ECParameters CURVE_PARAMS = CustomNamedCurves.getByName("secp256k1");
-    public static ECDomainParameters CURVE;
+    private static final ECDomainParameters ecParams;
+    private static final SecureRandom secureRandom;
+    private final BigInteger privateKey;
+    private final byte[] publicKey;
 
     static {
-        // Tell Bouncy Castle to precompute data that's needed during secp256k1 calculations. Increasing the width
-        // number makes calculations faster, but at a cost of extra memory usage and with decreasing returns. 12 was
-        // picked after consulting with the BC team.
-        FixedPointUtil.precompute(CURVE_PARAMS.getG(), 12);
-        CURVE = new ECDomainParameters(CURVE_PARAMS.getCurve(), CURVE_PARAMS.getG(), CURVE_PARAMS.getN(), CURVE_PARAMS.getH());
+        // All clients must agree on the curve to use by agreement. Bitcoin and Bitmessage use curve secp256k1.
+        X9ECParameters params = SECNamedCurves.getByName("secp256k1");
+        ecParams = new ECDomainParameters(params.getCurve(), params.getG(), params.getN(), params.getH());
         secureRandom = new SecureRandom();
     }
 
     /**
-     * @throws Exception
+     * Generates an entirely new keypair.
      */
-    public Key() throws Exception {
-        secureRandom = new SecureRandom();
-        ECKeyPairGenerator eckeyPairGenerator = new ECKeyPairGenerator();
-        ECKeyGenerationParameters eckeyGenerationParameters = new ECKeyGenerationParameters(CURVE, secureRandom);
-        eckeyPairGenerator.init(eckeyGenerationParameters);
-        AsymmetricCipherKeyPair keypair = eckeyPairGenerator.generateKeyPair();
+    public Key() {
+        ECKeyPairGenerator generator = new ECKeyPairGenerator();
+        ECKeyGenerationParameters keygenParams = new ECKeyGenerationParameters(ecParams, secureRandom);
+        generator.init(keygenParams);
+        AsymmetricCipherKeyPair keypair = generator.generateKeyPair();
         ECPrivateKeyParameters privParams = (ECPrivateKeyParameters) keypair.getPrivate();
         ECPublicKeyParameters pubParams = (ECPublicKeyParameters) keypair.getPublic();
         privateKey = privParams.getD();
-        publicKey = new LazyECPoint(CURVE.getCurve(), pubParams.getQ().getEncoded(true));
+        publicKey = pubParams.getQ().getEncoded(false);// The public key is an encoded point on the elliptic curve. It has no meaning independent of the curve.
+    }
+
+    /**
+     * Creates an ECKey given only the private key. This works because EC public keys are derivable from their
+     * private keys by doing a multiply with the generator value.
+     */
+    public Key(BigInteger privKey) {
+        this.privateKey = privKey;
+        this.publicKey = publicKeyFromPrivate(privKey);
     }
 
     /**
      * @return
      */
     public byte[] getPublicKeyBytes() {
-        return publicKey.getEncoded();
+        return publicKey;
     }
 
     /**
@@ -74,10 +74,18 @@ public class Key {
     }
 
     /**
-     *
      * @return
      */
     public String getPrivateKey() {
         return Utils.toHexString(getPrivateKeyBytes());
+    }
+
+    /**
+     * Derive the public key by doing a point multiply of G * privateKey.
+     * @param privKey
+     * @return
+     */
+    public static byte[] publicKeyFromPrivate(BigInteger privKey) {
+        return ecParams.getG().multiply(privKey).getEncoded(false);
     }
 }
