@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88126769-82c6-4ff9-8d7c-174eef831e2e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dispatch-labs-java-sdk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dispatch-labs-java-sdk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dispatchlabs/Sdk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dispatchlabs/Sdk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Transaction.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,13 +21,31 @@
       <file leaf-file-name="Sdk.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/dispatchlabs/Sdk.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="231" column="85" selection-start-line="231" selection-start-column="76" selection-end-line="231" selection-end-column="85" />
+            <state relative-caret-position="366">
+              <caret line="211" column="32" lean-forward="true" selection-start-line="211" selection-start-column="32" selection-end-line="211" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#678#679#0" expanded="true" />
                 <element signature="e#708#709#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dispatchlabs/states/Node.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="17" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Transaction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dispatchlabs/states/Transaction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3030">
+              <caret line="255" column="51" selection-start-line="255" selection-start-column="51" selection-end-line="255" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -165,8 +182,8 @@
         <option value="$PROJECT_DIR$/src/main/java/dispatchlabs/crypto/foo.java" />
         <option value="$PROJECT_DIR$/src/main/java/dispatchlabs/crypto/Key.java" />
         <option value="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Account.java" />
-        <option value="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Transaction.java" />
         <option value="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Receipt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dispatchlabs/states/Transaction.java" />
         <option value="$PROJECT_DIR$/src/main/java/dispatchlabs/Sdk.java" />
       </list>
     </option>
@@ -185,10 +202,10 @@
     <servers />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="766" />
-    <option name="y" value="95" />
-    <option name="width" value="1770" />
-    <option name="height" value="1038" />
+    <option name="x" value="524" />
+    <option name="y" value="49" />
+    <option name="width" value="1844" />
+    <option name="height" value="1172" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -196,7 +213,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
@@ -263,6 +279,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -663,11 +680,13 @@
       <workItem from="1526264908307" duration="1000" />
       <workItem from="1526313307900" duration="973000" />
       <workItem from="1526318125980" duration="1913000" />
+      <workItem from="1526495047881" duration="4963000" />
+      <workItem from="1526507748077" duration="128000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="529544000" />
+    <option name="totallyTimeSpent" value="534635000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -679,63 +698,40 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="766" y="95" width="1770" height="1038" extended-state="0" />
+    <frame x="524" y="49" width="1844" height="1172" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3291874" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.317053" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.27954972" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5050834" side_tool="true" weight="0.24836065" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.23060574" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32048193" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.22981367" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.31988743" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.140625" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49860466" visible="true" weight="0.17480578" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" weight="0.3299712" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Structure" order="1" sideWeight="0.50139534" side_tool="true" visible="true" weight="0.17480578" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24987704" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49491665" visible="true" weight="0.29330498" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5050834" side_tool="true" weight="0.24836065" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1782832" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24987704" />
-      <window_info anchor="right" id="SciView" order="4" weight="0.3299712" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32048193" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49491665" weight="0.38757765" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3291874" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49491665" weight="0.29330498" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32340777" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.23060574" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.317053" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Data View" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32340777" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -746,18 +742,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/dispatchlabs/Sdk.java</url>
-          <line>225</line>
-          <properties />
-          <option name="timeStamp" value="635" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="636" />
+      <option name="time" value="651" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1021,17 +1009,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dispatchlabs/states/Transaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="200" column="49" selection-start-line="200" selection-start-column="45" selection-end-line="200" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dispatchlabs/crypto/Key.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="42" column="47" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dispatchlabs/states/Transaction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3030">
+          <caret line="255" column="51" selection-start-line="255" selection-start-column="51" selection-end-line="255" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -1044,8 +1032,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dispatchlabs/Sdk.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="231" column="85" selection-start-line="231" selection-start-column="76" selection-end-line="231" selection-end-column="85" />
+        <state relative-caret-position="366">
+          <caret line="211" column="32" lean-forward="true" selection-start-line="211" selection-start-column="32" selection-end-line="211" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#678#679#0" expanded="true" />
