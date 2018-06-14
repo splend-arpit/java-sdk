@@ -121,7 +121,7 @@ public class Sdk {
             		Transaction.Type.SMART_CONTRACT,
             		0L, 
             		System.currentTimeMillis(),
-            		TEST_CODE.getBytes());
+            		TEST_CODE);
             JSONObject jsonObject = new JSONObject(http.post("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions", getHeaders(), transaction.toString()));
             receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
             return receipt;
