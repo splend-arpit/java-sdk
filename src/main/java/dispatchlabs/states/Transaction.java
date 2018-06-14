@@ -206,6 +206,10 @@ public class Transaction extends AJson {
 		return hertz;
 	}
 
+	public void setHertz(long hertz) {
+		this.hertz = hertz;
+	}
+
     /**
      *
      * @param privateKey
