@@ -17,6 +17,10 @@ import org.spongycastle.crypto.params.ECPublicKeyParameters;
  *
  */
 public class Key {
+
+    /**
+     * Class level-declarations.
+     */
     private static final ECDomainParameters ecParams;
     private static final SecureRandom secureRandom;
     private final BigInteger privateKey;

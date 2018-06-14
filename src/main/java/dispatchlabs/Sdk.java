@@ -122,6 +122,8 @@ public class Sdk {
             		0L, 
             		System.currentTimeMillis(),
             		TEST_CODE);
+
+            String foo = transaction.toString();
             JSONObject jsonObject = new JSONObject(http.post("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions", getHeaders(), transaction.toString()));
             receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
             return receipt;
@@ -156,7 +158,9 @@ public class Sdk {
             		10L, 
             		System.currentTimeMillis(),
             		TEST_CODE2,
-            		"test");
+            		"test",
+                    "abi",
+                    null);
             JSONObject jsonObject = new JSONObject(http.post("http://" + contact.getEndpoint().getHost() + ":1975/v1/transactions", getHeaders(), transaction.toString()));
             receipt = (Receipt) AJson.deserialize(Receipt.class, jsonObject.toString());
             return receipt;
@@ -293,6 +297,26 @@ public class Sdk {
     public static void main(String args[]) {
         System.out.println("Dispatch Labs SDK Example");
         try {
+
+            Object[] params = new Object[1];
+            params[0] = "555";
+
+            Transaction transaction = Transaction.create(
+                    "0f86ea981203b26b5b8244c8f661e30e5104555068a4bd168d3e3015db9bb25a",
+                    "3ed25f42484d517cdfc72cafb7ebc9e8baa52c2c",
+                    "c3be1a3a5c6134cca51896fadf032c4c61bc355e",
+                    Transaction.Type.SMART_CONTRACT,
+                    10L,
+                    System.currentTimeMillis(),
+                    TEST_CODE2,
+                    "abi",
+                    "test",
+                    params);
+
+
+            String foo = transaction.toString();
+
+
             Sdk sdk = new Sdk("10.0.1.3");
             List<Node> contacts = sdk.getDelegates();
             Account genesisAccount = sdk.createAccount();
