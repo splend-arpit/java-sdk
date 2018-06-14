@@ -12,10 +12,9 @@ import java.io.ByteArrayOutputStream;
  */
 public class Transaction extends AJson {
 
-    /**
-     *
-     */
-    public static class Type {
+	private static final long serialVersionUID = -6784018212068358301L;
+
+	public static class Type {
 
         /**
          * Class level-declarations.
@@ -33,16 +32,17 @@ public class Transaction extends AJson {
     private String from;
     private String to;
     private long value;
-    private String code;
-    private String method;
     private long time;
     private String signature;
+    private String method;
+    private byte[] code;
     private long hertz;
+
     // Transients
     private String fromName;
     private String toName;
 
-    /**
+	/**
      *
      * @return
      */
@@ -94,6 +94,22 @@ public class Transaction extends AJson {
      *
      * @return
      */
+    public String getFromName() {
+        return fromName;
+    }
+
+    /**
+     *
+     * @param fromName
+     */
+    public void setFromName(String fromName) {
+        this.fromName = fromName;
+    }
+
+    /**
+     *
+     * @return
+     */
     public String getTo() {
         return to;
     }
@@ -110,6 +126,22 @@ public class Transaction extends AJson {
      *
      * @return
      */
+    public String getToName() {
+        return toName;
+    }
+
+    /**
+     *
+     * @param toName
+     */
+    public void setToName(String toName) {
+        this.toName = toName;
+    }
+
+    /**
+     *
+     * @return
+     */
     public long getValue() {
         return value;
     }
@@ -120,38 +152,6 @@ public class Transaction extends AJson {
      */
     public void setValue(long value) {
         this.value = value;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getCode() {
-        return code;
-    }
-
-    /**
-     *
-     * @param code
-     */
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getMethod() {
-        return method;
-    }
-
-    /**
-     *
-     * @param method
-     */
-    public void setMethod(String method) {
-        this.method = method;
     }
 
     /**
@@ -185,54 +185,26 @@ public class Transaction extends AJson {
     public void setSignature(String signature) {
         this.signature = signature;
     }
+    
+    public byte[] getCode() {
+		return code;
+	}
 
-    /**
-     *
-     * @return
-     */
-    public long getHertz() {
-        return hertz;
-    }
+	public void setCode(byte[] code) {
+		this.code = code;
+	}
 
-    /**
-     *
-     * @param hertz
-     */
-    public void setHertz(long hertz) {
-        this.hertz = hertz;
-    }
+	public String getMethod() {
+		return method;
+	}
 
-    /**
-     *
-     * @return
-     */
-    public String getFromName() {
-        return fromName;
-    }
-
-    /**
-     *
-     * @param fromName
-     */
-    public void setFromName(String fromName) {
-        this.fromName = fromName;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getToName() {
-        return toName;
-    }
-
-    /**
-     *
-     * @param toName
-     */
-    public void setToName(String toName) {
-        this.toName = toName;
-    }
+	public void setMethod(String method) {
+		this.method = method;
+	}
+	
+	public long getHertz() {
+		return hertz;
+	}
 
     /**
      *
@@ -245,30 +217,46 @@ public class Transaction extends AJson {
      * @return
      * @throws Exception
      */
-    public static Transaction create(String privateKey, String from, String to, byte type, long value, String code, String method, long time) throws Exception {
+    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time) throws Exception {
+    		return create(privateKey, from, to, type, value, time, null);
+    }
+
+    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time, String code) throws Exception {
+		return create(privateKey, from, to, type, value, time, null, null);
+    }
+    
+    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time, String code, String method) throws Exception {
+    	
+        // Create transaction.
+        Transaction transaction = new Transaction();
+
         byte[] privateKeyBytes = DatatypeConverter.parseHexBinary(privateKey);
         byte[] typeBytes = {type};
         byte[] fromBytes = DatatypeConverter.parseHexBinary(from);
         byte[] toBytes = DatatypeConverter.parseHexBinary(to);
         byte[] valueBytes = Utils.longToBytes(value);
-        byte[] codeBytes = DatatypeConverter.parseHexBinary(code);
-        byte[] methodBytes = DatatypeConverter.parseHexBinary(method);
         byte[] timeBytes = Utils.longToBytes(time);
 
         // Hash bytes.
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream( );
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         byteArrayOutputStream.write(typeBytes);
         byteArrayOutputStream.write(fromBytes);
         byteArrayOutputStream.write(toBytes);
         byteArrayOutputStream.write(valueBytes);
-        byteArrayOutputStream.write(codeBytes);
-        byteArrayOutputStream.write(methodBytes);
+        if(code != null) {
+            byte[] codeBytes = DatatypeConverter.parseHexBinary(code);
+            byteArrayOutputStream.write(codeBytes);
+            transaction.setCode(codeBytes);
+        }
+        if(method !=null) {
+            byte[] methodBytes = DatatypeConverter.parseHexBinary(method);
+            byteArrayOutputStream.write(methodBytes);
+    			transaction.setMethod(method);
+        }
         byteArrayOutputStream.write(timeBytes);
         byte[] hashBytes = Crypto.hash(byteArrayOutputStream.toByteArray());
         byte[] signatureBytes = Crypto.sign(privateKeyBytes, hashBytes);
 
-        // Create transaction.
-        Transaction transaction = new Transaction();
         transaction.setHash(Utils.toHexString(hashBytes));
         transaction.setType(type);
         transaction.setFrom(from);
@@ -276,7 +264,8 @@ public class Transaction extends AJson {
         transaction.setValue(value);
         transaction.setTime(time);
         transaction.setSignature(Utils.toHexString(signatureBytes));
-
+        transaction.setHertz(0);
+        
         return transaction;
     }
 }
