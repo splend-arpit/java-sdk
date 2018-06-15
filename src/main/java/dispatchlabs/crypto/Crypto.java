@@ -1,5 +1,6 @@
 package dispatchlabs.crypto;
 
+import dispatchlabs.states.Transaction;
 import org.bitcoin.NativeSecp256k1;
 import org.bouncycastle.jcajce.provider.digest.Keccak;
 

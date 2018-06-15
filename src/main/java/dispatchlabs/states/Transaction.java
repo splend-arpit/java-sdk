@@ -161,22 +161,23 @@ public class Transaction extends AJson {
     }
 
     /**
-     * Transfer tokens
+     *
      * @param privateKey
      * @param from
      * @param to
      * @param type
      * @param value
      * @param time
+     * @param createSignature
      * @return
      * @throws Exception
      */
-    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time) throws Exception {
-    		return create(privateKey, from, to, type, value, time, null, null, null, null);
+    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time, boolean createSignature) throws Exception {
+    		return create(privateKey, from, to, type, value, time, null, null, null, null, createSignature);
     }
 
     /**
-     * Deploy contract
+     *
      * @param privateKey
      * @param from
      * @param to
@@ -184,15 +185,16 @@ public class Transaction extends AJson {
      * @param value
      * @param time
      * @param code
+     * @param createSignature
      * @return
      * @throws Exception
      */
-    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time, String code) throws Exception {
-		return create(privateKey, from, to, type, value, time, code, null, null, null);
+    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time, String code, boolean createSignature) throws Exception {
+		return create(privateKey, from, to, type, value, time, code, null, null, null, createSignature);
     }
 
     /**
-     * Execute contract
+     *
      * @param privateKey
      * @param from
      * @param to
@@ -203,10 +205,11 @@ public class Transaction extends AJson {
      * @param abi
      * @param method
      * @param params
+     * @param createSignature
      * @return
      * @throws Exception
      */
-    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time, String code, String abi, String method, Object []params) throws Exception {
+    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time, String code, String abi, String method, Object []params, boolean createSignature) throws Exception {
 
         byte[] privateKeyBytes = DatatypeConverter.parseHexBinary(privateKey);
         byte[] typeBytes = {type};
@@ -247,7 +250,9 @@ public class Transaction extends AJson {
         transaction.setMethod(method);
         transaction.setParams(params);
         transaction.setTime(time);
-        transaction.setSignature(Utils.toHexString(signatureBytes));
+        if (createSignature) {
+            transaction.setSignature(Utils.toHexString(signatureBytes));
+        }
         transaction.setHertz(0);
         
         return transaction;
