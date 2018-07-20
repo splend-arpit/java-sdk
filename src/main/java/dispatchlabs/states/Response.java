@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 /**
  *
  */
-public class Receipt extends AJson {
+public class Response extends AJson {
 
     /**
      *
@@ -49,45 +49,10 @@ public class Receipt extends AJson {
     /**
      * Class level-declarations.
      */
-    private String id;
-    private String type;
     private String status;
     private String humanReadableStatus;
-    private String nodeIp;
     private Timestamp updated;
     private Timestamp created;
-
-    /**
-     *
-     * @return
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     *
-     * @param id
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     *
-     * @param type
-     */
-    public void setType(String type) {
-        this.type = type;
-    }
 
     /**
      *
@@ -119,22 +84,6 @@ public class Receipt extends AJson {
      */
     public void setHumanReadableStatus(String humanReadableStatus) {
         this.humanReadableStatus = humanReadableStatus;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getNodeIp() {
-        return nodeIp;
-    }
-
-    /**
-     *
-     * @param nodeIp
-     */
-    public void setNodeIp(String nodeIp) {
-        this.nodeIp = nodeIp;
     }
 
     /**

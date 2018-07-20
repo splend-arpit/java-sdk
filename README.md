@@ -19,14 +19,14 @@
             List<Contact> nodes = sdk.getDelegates();
             Account fromAccount = sdk.createAccount();
             Account toAccount = sdk.createAccount();
-            Receipt receipt = sdk.transferTokens(nodes.get(0), fromAccount, toAccount, 45);
-            System.out.println(receipt.getStatus());
+            Receipt response = sdk.transferTokens(nodes.get(0), fromAccount, toAccount, 45);
+            System.out.println(response.getStatus());
 
             // Pending?
-            while ((receipt = sdk.getLastStatus()).getStatus().equals(Receipt.Status.PENDING)) {
+            while ((response = sdk.getLastStatus()).getStatus().equals(Receipt.Status.PENDING)) {
                 Thread.sleep(100);
             }
-            System.out.println(receipt.getStatus());
+            System.out.println(response.getStatus());
 
             // Get transactions.
             List<Transaction> transactions = sdk.getTransactions(nodes.get(0));
