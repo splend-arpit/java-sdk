@@ -12,10 +12,9 @@ import java.io.ByteArrayOutputStream;
  */
 public class Transaction extends AJson {
 
-    /**
-     *
-     */
-    public static class Type {
+	private static final long serialVersionUID = -6784018212068358301L;
+
+	public static class Type {
 
         /**
          * Class level-declarations.
@@ -42,7 +41,7 @@ public class Transaction extends AJson {
     private String fromName;
     private String toName;
 
-    /**
+	/**
      *
      * @return
      */
@@ -185,6 +184,23 @@ public class Transaction extends AJson {
     public void setSignature(String signature) {
         this.signature = signature;
     }
+    
+    public byte[] getCode() {
+		return code;
+	}
+
+	public void setCode(byte[] code) {
+		this.code = code;
+	}
+
+	public long getHertz() {
+		return hertz;
+	}
+
+	public void setHertz(long hertz) {
+		this.hertz = hertz;
+	}
+
 
     /**
      *
@@ -276,7 +292,20 @@ public class Transaction extends AJson {
         transaction.setValue(value);
         transaction.setTime(time);
         transaction.setSignature(Utils.toHexString(signatureBytes));
+        if(code != null) {
+        		transaction.setCode(code);
+        		transaction.setHertz(0);
+        		transaction.setMethod(method);
+        }
 
         return transaction;
     }
+
+	public String getMethod() {
+		return method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
+	}
 }

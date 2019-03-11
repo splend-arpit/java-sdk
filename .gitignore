@@ -10,3 +10,6 @@
 /target/
 /.libs/
 *.o
+.classpath
+.project
+*.prefs
