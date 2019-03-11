@@ -48,7 +48,27 @@ public class Utils {
      * @return
      */
     public static String toHexString(byte[] bytes) {
-        return DatatypeConverter.printHexBinary(bytes).toLowerCase();
+    	
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%02X", b));
+        }
+        System.out.println(sb.toString());
+        
+        return sb.toString();
+    	
+    	
+//    	System.out.println("pub sring bytes");
+//    	System.out.println(bytes);
+//    	
+//    	for (int i=0; i < bytes.length; i++) {
+//    		System.out.println(bytes[i]);
+//    	}
+//    	
+//    	String address = DatatypeConverter.printHexBinary(bytes).toLowerCase();
+//    	System.out.println(address);
+    	
+//        return address;
     }
 
     /**
