@@ -27,18 +27,19 @@ public class Transaction extends AJson {
     /**
      * Class level-declarations.
      */
-    private String hash;
+    private String hash; // Hash = (Type + From + To + Value + Code + Method + Time)
     private byte type;
     private String from;
-    private String fromName;
     private String to;
-    private String toName;
     private long value;
+    private String code;
+    private String method;
     private long time;
     private String signature;
-    private String method;
-    private byte[] code;
     private long hertz;
+    // Transients
+    private String fromName;
+    private String toName;
 
 	/**
      *
@@ -92,22 +93,6 @@ public class Transaction extends AJson {
      *
      * @return
      */
-    public String getFromName() {
-        return fromName;
-    }
-
-    /**
-     *
-     * @param fromName
-     */
-    public void setFromName(String fromName) {
-        this.fromName = fromName;
-    }
-
-    /**
-     *
-     * @return
-     */
     public String getTo() {
         return to;
     }
@@ -124,22 +109,6 @@ public class Transaction extends AJson {
      *
      * @return
      */
-    public String getToName() {
-        return toName;
-    }
-
-    /**
-     *
-     * @param toName
-     */
-    public void setToName(String toName) {
-        this.toName = toName;
-    }
-
-    /**
-     *
-     * @return
-     */
     public long getValue() {
         return value;
     }
@@ -150,6 +119,38 @@ public class Transaction extends AJson {
      */
     public void setValue(long value) {
         this.value = value;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     *
+     * @param code
+     */
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getMethod() {
+        return method;
+    }
+
+    /**
+     *
+     * @param method
+     */
+    public void setMethod(String method) {
+        this.method = method;
     }
 
     /**
@@ -203,6 +204,54 @@ public class Transaction extends AJson {
 
     /**
      *
+     * @return
+     */
+    public long getHertz() {
+        return hertz;
+    }
+
+    /**
+     *
+     * @param hertz
+     */
+    public void setHertz(long hertz) {
+        this.hertz = hertz;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getFromName() {
+        return fromName;
+    }
+
+    /**
+     *
+     * @param fromName
+     */
+    public void setFromName(String fromName) {
+        this.fromName = fromName;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getToName() {
+        return toName;
+    }
+
+    /**
+     *
+     * @param toName
+     */
+    public void setToName(String toName) {
+        this.toName = toName;
+    }
+
+    /**
+     *
      * @param privateKey
      * @param from
      * @param to
@@ -212,21 +261,15 @@ public class Transaction extends AJson {
      * @return
      * @throws Exception
      */
-    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time) throws Exception {
-    		return create(privateKey, from, to, type, value, time, null);
-    }
-
-    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time, byte[] code) throws Exception {
-		return create(privateKey, from, to, type, value, time, null);
-    }
-    
-    public static Transaction create(String privateKey, String from, String to, byte type, long value, long time, byte[] code, String method) throws Exception {
+    public static Transaction create(String privateKey, String from, String to, byte type, long value, String code, String method, long time) throws Exception {
         byte[] privateKeyBytes = DatatypeConverter.parseHexBinary(privateKey);
         byte[] typeBytes = {type};
         byte[] fromBytes = DatatypeConverter.parseHexBinary(from);
         byte[] toBytes = DatatypeConverter.parseHexBinary(to);
-        byte[] timeBytes = Utils.longToBytes(time);
         byte[] valueBytes = Utils.longToBytes(value);
+        byte[] codeBytes = DatatypeConverter.parseHexBinary(code);
+        byte[] methodBytes = DatatypeConverter.parseHexBinary(method);
+        byte[] timeBytes = Utils.longToBytes(time);
 
         // Hash bytes.
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream( );
@@ -234,6 +277,8 @@ public class Transaction extends AJson {
         byteArrayOutputStream.write(fromBytes);
         byteArrayOutputStream.write(toBytes);
         byteArrayOutputStream.write(valueBytes);
+        byteArrayOutputStream.write(codeBytes);
+        byteArrayOutputStream.write(methodBytes);
         byteArrayOutputStream.write(timeBytes);
         byte[] hashBytes = Crypto.hash(byteArrayOutputStream.toByteArray());
         byte[] signatureBytes = Crypto.sign(privateKeyBytes, hashBytes);
